@@ -6,5 +6,4 @@ mysq <- function(x){
   list(x = x, y = y, ysum=summary(y))
 }
 
-with(ddt, hist(LENGTH))
-mean(ddt$WEIGHT)
+
