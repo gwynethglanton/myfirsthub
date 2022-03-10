@@ -1,44 +1,44 @@
-
+#' @title MyDDT Function
 #'
-#' @title Makes a ddt function
-#'
+#' @description project 1: a ddt function
 #' @param df the data frame
-#' @param species the species being called from the ddt data set
+#' @param SPECIES the species being called from the ddt data set
 #'
 #' @return reads the dtt file
 #' @export
+#' @importFrom dplyr '%>%' filter
+#' @importFrom ggplot2 ggplot geom_point geom_smooth ggtitle aes_string
+#' @importFrom stats addmargins
+#' @importFrom utils head write.csv
 #'
 #'
 #' @examples
-#' \dontrun{myddt(df, species)}
+#' \dontrun{myddt(df = ddt, SPECIES = "CCATFISH")}
 #'
-# functions that call dplyr and ggplot2.
-# this is not obvious because of non standard evaluation
-library(dplyr)
-library(ggplot2)
 
 
 
-myddt <- function(df, species){
+myddt <- function(df, SPECIES){
 
 
   print(df)
   tab= table(df$RIVER) / length(df$RIVER)
   addmargins(tab)
   print(tab)
-  df1 <- filter(df, SPECIES == species)
-  if (species == "CCATFISH"){
+  ## Create new data frame using {{SPECIES}} from the function call
+  df1 <- df %>% filter(SPECIES == {{SPECIES}})
+
+  if ({{SPECIES}} == "CCATFISH"){
     write.csv(x = df1, "LvsWforCCATFISH.csv", row.names = FALSE)
   }
-  if (species == "SMBUFFALO"){
+  if ({{SPECIES}} == "SMBUFFALO"){
     write.csv(x = df1, "LvsWforSMBUFFALO.csv", row.names = FALSE)
   }
-  if (species == "LMBASS"){
+  if ({{SPECIES}} == "LMBASS"){
     write.csv(x = df1, "LvsWforLMBASS.csv", row.names = FALSE)
   }
   print(df1)
   g <- ggplot(df1, aes_string(x="WEIGHT",y="LENGTH")) + # Note the use of aes_string
-
     geom_point(aes_string(color = "RIVER" )) +
     geom_smooth(formula = y~x +I(x^2), method = "lm") + ggtitle("Gwyneth Glanton")
   print(g)
