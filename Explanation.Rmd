@@ -1,0 +1,57 @@
+---
+title: "what the package does"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{what the package does}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MATH4753glan0005)
+```
+
+
+
+# Introduction
+This package holds funcions that were used through out the class MATH4753, applied statistical methods. Throughout the class labs were performed and different functions from the labs were added to the R package. This can make calling functions a lot more convenient. 
+
+## first function 
+read csv function
+```{r}
+df= MATH4753glan0005::myread("DDT.csv",dird="")
+```
+This function can be used to read in any csv file. This uses the DDT csv file as we did in previous labs. This makes reading in csv files a lot easier 
+
+## Second function 
+myddt function
+```{r}
+MATH4753glan0005::myddt(df, SPECIES = "CCATFISH")
+```
+
+This function is specifically for the csv file DDT which takes the data frame and makes a graph for it. It also prints needed information and makes it into a csv file depending which species is chosen.
+
+## third function
+Scatterhist plot function
+```{r}
+MATH4753glan0005::scatterhist(x=df$WEIGHT,y=df$LENGTH,xlab="",ylab="")
+```
+This function can be used to make a scatterhist from a data frame given the x and y limits. This gives the layout of the graph and creates a matrix to allow the combined histogram and scatter plot. 
+
+## Fourth function
+my binomial function
+```{r}
+MATH4753glan0005::mybin(iter=100, n=10, p=.07)
+```
+This function makes a binomoial distribution for a given sample size iteration and probability. This makes the graph with x and y labels. It also makes the graph rainbow. 
+
+
+
+
